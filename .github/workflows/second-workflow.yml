@@ -23,6 +23,14 @@ jobs:
       matrix:
         runner: [ubuntu-latest, ubuntu-22.04, windows-latest]
         node-version: [20, 18]
+        include:
+        - runner: ubuntu-22.04
+          node-version: 16
+        exclude:
+        - runner: ubuntu-latest
+          node-version: 20
+        - runner: windows-latest
+          node-version: 18
     runs-on: ${{matrix.runner}}
     steps:
     - name: get code
