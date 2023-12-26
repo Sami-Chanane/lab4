@@ -35,7 +35,7 @@ jobs:
         path: $HOME/.npm
         key: deps-key-${{'**/package-lock.json'}}
     - name: install dependencies
-      run: nmp ci
+      run: npm ci
     - name: test code
       run: npm run test
     - name: publish test report
@@ -55,7 +55,7 @@ jobs:
         path: $HOME/.npm
         key: deps-key-${{'**/package-lock.json'}}
     - name: install dependencies
-      run: nmp ci
+      run: npm ci
     - name: build code
       run: npm run build
     - name: upload build
