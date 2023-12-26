@@ -41,8 +41,10 @@ jobs:
       if: steps.cache-dep.outputs.cache-hit != 'true'
       run: npm ci
     - name: test code
+      id: code-test
       run: npm run test
     - name: publish test report
+      if: steps.code-test.outcome == 'failure'
       uses: actions/upload-artifact@v3
       with:
         name: test-report
