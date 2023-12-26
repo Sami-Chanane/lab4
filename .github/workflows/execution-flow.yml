@@ -15,11 +15,13 @@ jobs:
     - name: get code
       uses: actions/checkout@v4
     - name: cache dependencies
+      id: cache-dep
       uses: actions/cache@v3
       with:
-        path: .npm
+        path: node_modules
         key: deps-key-${{hashFiles('**/package-lock.json')}}
     - name: install dependencies
+      if: steps.cache-dep.outputs.cache-hit != 'true'
       run: npm ci
     - name: lint code
       run: npm run lint
@@ -30,11 +32,13 @@ jobs:
     - name: get code
       uses: actions/checkout@v4
     - name: cache dependencies
+      id: cache-dep
       uses: actions/cache@v3
       with:
-        path: .npm
+        path: node_modules
         key: deps-key-${{hashFiles('**/package-lock.json')}}
     - name: install dependencies
+      if: steps.cache-dep.outputs.cache-hit != 'true'
       run: npm ci
     - name: test code
       run: npm run test
@@ -50,11 +54,13 @@ jobs:
     - name: get code
       uses: actions/checkout@v4
     - name: cache dependencies
+      id: cache-dep
       uses: actions/cache@v3
       with:
-        path: .npm
+        path: node_modules
         key: deps-key-${{hashFiles('**/package-lock.json')}}
     - name: install dependencies
+      if: steps.cache-dep.outputs.cache-hit != 'true'
       run: npm ci
     - name: build code
       run: npm run build
