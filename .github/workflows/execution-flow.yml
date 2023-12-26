@@ -1,13 +1,14 @@
 name: lab4-workflow
 on:
-  push:
-    branches:
-    - master
-  pull_request:
-    types:
-    - opened
-    branches:
-    - master
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #   - master
+  # pull_request:
+  #   types:
+  #   - opened
+  #   branches:
+  #   - master
 jobs:
   lint:
     runs-on: ubuntu-latest
