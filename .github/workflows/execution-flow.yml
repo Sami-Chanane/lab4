@@ -39,7 +39,7 @@ jobs:
     - name: test code
       run: npm run test
     - name: publish test report
-      uses: actions/upload@v3
+      uses: actions/upload-artifact@v3
       with:
         name: test-report
         path: test.json
@@ -59,7 +59,7 @@ jobs:
     - name: build code
       run: npm run build
     - name: upload build
-      uses: actions/upload@v3
+      uses: actions/upload-artifact@v3
       with:
         name: dist-files
         path: dist
@@ -68,7 +68,7 @@ jobs:
     needs: [build]
     steps:
     - name: get dist-files
-      uses: actions/download@v3
+      uses: actions/download-artifact@v3
       with:
         name: dist-files
     - name: list files
