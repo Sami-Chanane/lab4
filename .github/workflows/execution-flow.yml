@@ -80,7 +80,9 @@ jobs:
     uses: ./.github/workflows/reusable-workflow.yml
     with:
       artifact-name: dist-files
-
+    secrets:
+      username: ${{secrets.username}}
+      password: ${{secrets.password}}
 
   deploy:
     runs-on: ubuntu-latest

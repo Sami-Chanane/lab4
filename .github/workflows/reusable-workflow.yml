@@ -6,9 +6,20 @@ on:
         description: "this is the artifact produced by the build step of the caller workflow"
         required: true
         type: string
+    secrets:
+      username:
+        required: true
+      password:
+        required: true
 jobs:
   in-between:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:latest
+        env:
+          MONGO_INITDB_ROOT_USERNAME: ${{secrets.username}}
+          MONGO_INITDB_ROOT_PASSWORD: ${{secrets.password}}
     steps:
     - name: get artifact
       uses: actions/download-artifact@v3
