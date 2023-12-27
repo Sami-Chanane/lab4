@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
     - name: print food
-      run: echo ${{jobs.in-between-job.outputs.food}}
+      run: echo ${{needs.in-between-job.outputs.food}}
 
   deploy:
     runs-on: ubuntu-latest
