@@ -84,9 +84,16 @@ jobs:
       username: ${{secrets.username}}
       password: ${{secrets.password}}
 
+  food-printer:
+    needs: [in-between-job]
+    runs-on: ubuntu-latest
+    steps: 
+    - name: print food
+      run: echo ${{jobs.in-between-job.outputs.food}}
+
   deploy:
     runs-on: ubuntu-latest
-    needs: [in-between-job]
+    needs: [food-printer]
     steps:
     - name: get dist-files
       uses: actions/download-artifact@v3

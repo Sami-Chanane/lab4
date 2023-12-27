@@ -11,6 +11,8 @@ on:
         required: true
       password:
         required: true
+    outputs:
+      food: ${{jobs.in-between.outputs.food-job}}
 jobs:
   in-between:
     runs-on: ubuntu-latest
@@ -20,6 +22,8 @@ jobs:
         env:
           MONGO_INITDB_ROOT_USERNAME: ${{secrets.username}}
           MONGO_INITDB_ROOT_PASSWORD: ${{secrets.password}}
+    outputs:
+      food-job: ${{steps.output-generator.outputs.food-step}}
     steps:
     - name: get artifact
       uses: actions/download-artifact@v3
@@ -27,5 +31,8 @@ jobs:
         name: ${{inputs.artifact-name}}
     - name: list content
       run: ls -alh
+    - name: generate output
+      id: output-generator
+      run: echo "food-step=PIZZA" > $GITHUB_OUTPUT
       
 
