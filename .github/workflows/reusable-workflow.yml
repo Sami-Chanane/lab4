@@ -12,7 +12,8 @@ on:
       password:
         required: true
     outputs:
-      food: ${{jobs.in-between.outputs.food-job}}
+      food: 
+        value: ${{jobs.in-between.outputs.food-job}}
 jobs:
   in-between:
     runs-on: ubuntu-latest
