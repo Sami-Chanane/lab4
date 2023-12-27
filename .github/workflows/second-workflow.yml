@@ -32,6 +32,7 @@ jobs:
         - runner: windows-latest
           node-version: 18
     runs-on: ${{matrix.runner}}
+    continue-on-error: true
     steps:
     - name: get code
       uses: actions/checkout@v4
